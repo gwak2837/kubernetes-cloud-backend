@@ -8,7 +8,14 @@ userRouter.get('/', (ctx, next) => {
   next()
 })
 
-userRouter.post('/', (ctx, next) => {
-  ctx.body = { a: 'aa', b: 'bbdassdfadasddfsadfc' }
+userRouter.post('/register', (ctx, next) => {
+  console.log(ctx.request.body)
+  ctx.body = ctx.request.body
+  next()
+})
+
+userRouter.post('/login', (ctx, next) => {
+  console.log(ctx.request.body)
+  ctx.body = ctx.request.body
   next()
 })

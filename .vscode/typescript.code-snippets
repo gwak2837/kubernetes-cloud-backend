@@ -4,7 +4,7 @@
     "body": [
       "import Router from 'koa-router'",
       "",
-      "export const $1Router = new Router({ prefix: getApiPath(__dirname) })",
+      "export const $1Router = new Router({ prefix: __dirname.slice(7) })",
       "",
       "$1Router.get('/', (ctx, next) => {",
       "  ctx.body = 'hello world'",
