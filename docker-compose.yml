@@ -3,10 +3,10 @@ version: '3.9'
 services:
   server:
     build: .
-    container_name: node-template-2021-container
+    container_name: kubernetes-cloud-container
     env_file:
       - .env
-    image: node-template-2021-image:latest
+    image: kubernetes-cloud-image:latest
     restart: always
     ports:
       - $PORT:$PORT
