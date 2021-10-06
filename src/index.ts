@@ -1,9 +1,9 @@
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import cors from '@koa/cors'
-import { postRouter } from './api/post'
+import { postRouter } from './api/post/resolvers'
 import { rootRouter } from './api'
-import { userRouter } from './api/user'
+import { userRouter } from './api/user/resolvers'
 
 export const app = new Koa()
 const port = process.env.PORT
