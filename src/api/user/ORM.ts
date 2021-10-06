@@ -1,4 +1,6 @@
-export function userORM(rows: any[]) {
+import { user } from '../../database/types'
+
+export function userORM(rows: Partial<user>[]) {
   return rows.map((row) => ({
     id: row.id,
     creationTime: row.creation_time,

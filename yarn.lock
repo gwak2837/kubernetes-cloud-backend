@@ -555,6 +555,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vramework/schemats@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "@vramework/schemats@npm:0.0.10"
+  dependencies:
+    camelcase: ^6.2.0
+    commander: ^8.1.0
+    pg: ^8.7.1
+  bin:
+    schemats: dist/bin/schemats.js
+  checksum: 61f5fd2908c40ad2dc3d44ff7dee77ff915a284aaf6a80d03e02e1e38532b83ae696c4d368a4f858e10573261102480f391e519718627989cb227e4307adf2c6
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.11.1":
   version: 1.11.1
   resolution: "@webassemblyjs/ast@npm:1.11.1"
@@ -1370,6 +1383,13 @@ __metadata:
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
+  languageName: node
+  linkType: hard
+
+"commander@npm:^8.1.0":
+  version: 8.2.0
+  resolution: "commander@npm:8.2.0"
+  checksum: e868805bc266777f7a9c8a740e15b9e02b8148d8251f577ea9b9ef373ac0bdeb77b9b60cfc033592c9e1affea89993be08c13c623f0c619f9bf152c0e4d12cb0
   languageName: node
   linkType: hard
 
@@ -3187,6 +3207,43 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"kubernates-cloud@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "kubernates-cloud@workspace:."
+  dependencies:
+    "@koa/cors": ^3.1.0
+    "@types/koa": ^2.13.4
+    "@types/koa-bodyparser": ^4.3.3
+    "@types/koa-router": ^7.4.4
+    "@types/koa__cors": ^3.0.3
+    "@types/node": ^16.10.2
+    "@types/pg": ^8.6.1
+    "@typescript-eslint/eslint-plugin": ^4.32.0
+    "@typescript-eslint/parser": ^4.32.0
+    "@vramework/schemats": ^0.0.10
+    concurrently: ^6.3.0
+    dotenv: ^10.0.0
+    eslint: ^7.32.0
+    eslint-config-prettier: ^8.3.0
+    eslint-config-standard: ^16.0.3
+    eslint-plugin-import: ^2.24.2
+    eslint-plugin-node: ^11.1.0
+    eslint-plugin-promise: ^5.1.0
+    husky: ^7.0.0
+    koa: ^2.13.3
+    koa-bodyparser: ^4.3.0
+    koa-router: ^10.1.1
+    nodemon: ^2.0.13
+    pg: ^8.7.1
+    prettier: ^2.4.1
+    ts-loader: ^9.2.6
+    ts-node: ^10.2.1
+    typescript: ^4.4.3
+    webpack: ^5.55.1
+    webpack-cli: ^4.8.0
+  languageName: unknown
+  linkType: soft
+
 "latest-version@npm:^5.1.0":
   version: 5.1.0
   resolution: "latest-version@npm:5.1.0"
@@ -3608,42 +3665,6 @@ fsevents@~2.3.2:
   checksum: 10174cb880fffbb2896954599a2551da66127dd3c65703c827536fe9a4b4431545a9e3378c2006fb5ba59d0f0764ceff87c9f7eb0e84fabf7958411fccd0edd1
   languageName: node
   linkType: hard
-
-"node-template-2021@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "node-template-2021@workspace:."
-  dependencies:
-    "@koa/cors": ^3.1.0
-    "@types/koa": ^2.13.4
-    "@types/koa-bodyparser": ^4.3.3
-    "@types/koa-router": ^7.4.4
-    "@types/koa__cors": ^3.0.3
-    "@types/node": ^16.10.2
-    "@types/pg": ^8.6.1
-    "@typescript-eslint/eslint-plugin": ^4.32.0
-    "@typescript-eslint/parser": ^4.32.0
-    concurrently: ^6.3.0
-    dotenv: ^10.0.0
-    eslint: ^7.32.0
-    eslint-config-prettier: ^8.3.0
-    eslint-config-standard: ^16.0.3
-    eslint-plugin-import: ^2.24.2
-    eslint-plugin-node: ^11.1.0
-    eslint-plugin-promise: ^5.1.0
-    husky: ^7.0.0
-    koa: ^2.13.3
-    koa-bodyparser: ^4.3.0
-    koa-router: ^10.1.1
-    nodemon: ^2.0.13
-    pg: ^8.7.1
-    prettier: ^2.4.1
-    ts-loader: ^9.2.6
-    ts-node: ^10.2.1
-    typescript: ^4.4.3
-    webpack: ^5.55.1
-    webpack-cli: ^4.8.0
-  languageName: unknown
-  linkType: soft
 
 "nodemon@npm:^2.0.13":
   version: 2.0.13

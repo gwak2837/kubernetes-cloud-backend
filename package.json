@@ -1,24 +1,25 @@
 {
-  "name": "node-template-2021",
+  "name": "kubernates-cloud",
   "version": "0.1.0",
-  "description": "",
-  "homepage": "https://github.com///#readme",
+  "description": "쿠버네티스 기반 클라우드 시스템 엔지니어 과정 최종 프로젝트",
+  "homepage": "https://github.com/rmfpdlxmtidl/kubernates-cloud#readme",
   "bugs": {
-    "url": "https://github.com///issues",
-    "email": "a@a.com"
+    "url": "https://github.com/rmfpdlxmtidl/kubernates-cloud/issues",
+    "email": "gwak2837@kakao.com"
   },
   "license": "GPL-3.0-only",
-  "author": "",
+  "author": "Taeuk Gwak <gwak2837@kakao.com>",
   "main": "dist/index.js",
-  "repository": "https://github.com//.git",
+  "repository": "https://github.com/rmfpdlxmtidl/kubernates-cloud.git",
   "scripts": {
-    "dev": "rm -rf dist && mkdir dist && touch dist/index.js && NODE_ENV=development concurrently \"yarn webpack\" \"nodemon -r dotenv/config dist/index.js dotenv_config_path=.env.development --trace-warnings\"",
-    "build": "rm -rf dist && NODE_ENV=production yarn webpack",
+    "dev": "NODE_ENV=development concurrently \"yarn webpack\" \"nodemon -r dotenv/config dist/index.js dotenv_config_path=.env.development --trace-warnings\"",
+    "build": "NODE_ENV=production yarn webpack",
     "start": "NODE_ENV=production node -r dotenv/config dist",
     "test": "NODE_ENV=test ts-node -r dotenv/config test/index.ts dotenv_config_path=.env.test --trace-warnings --watch test",
     "format": "prettier . --write --ignore-path .gitignore",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "type": "tsc --pretty --noEmit",
+    "generate": "schemats postgres postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DB} -o src/database/types.ts && prettier src/database/types.ts --write",
     "pre-push": "yarn format && yarn lint && yarn type",
     "postinstall": "[ -d '.husky' ] && husky install || true"
   },
@@ -39,6 +40,7 @@
     "@types/pg": "^8.6.1",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
+    "@vramework/schemats": "^0.0.10",
     "concurrently": "^6.3.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
