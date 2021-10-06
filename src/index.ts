@@ -1,10 +1,15 @@
 import Koa from 'koa'
+import bodyParser from 'koa-bodyparser'
+import cors from '@koa/cors'
+import { postRouter } from './api/post'
 import { rootRouter } from './api'
 import { userRouter } from './api/user'
-import { pool } from './database/postgres'
 
 export const app = new Koa()
 const port = process.env.PORT
+
+app.use(cors())
+app.use(bodyParser())
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
@@ -12,8 +17,4 @@ app.listen(port, () => {
 
 app.use(rootRouter.routes())
 app.use(userRouter.routes())
-
-pool
-  .query('SELECT NOW()')
-  .then((query) => console.log(query.rows))
-  .catch((error) => console.error(error))
+app.use(postRouter.routes())
