@@ -1,16 +1,16 @@
 {
-  "name": "kubernates-cloud",
+  "name": "kubernetes-cloud",
   "version": "0.1.0",
   "description": "쿠버네티스 기반 클라우드 시스템 엔지니어 과정 최종 프로젝트",
-  "homepage": "https://github.com/rmfpdlxmtidl/kubernates-cloud#readme",
+  "homepage": "https://github.com/rmfpdlxmtidl/kubernetes-cloud#readme",
   "bugs": {
-    "url": "https://github.com/rmfpdlxmtidl/kubernates-cloud/issues",
+    "url": "https://github.com/rmfpdlxmtidl/kubernetes-cloud/issues",
     "email": "gwak2837@kakao.com"
   },
   "license": "GPL-3.0-only",
   "author": "Taeuk Gwak <gwak2837@kakao.com>",
   "main": "dist/index.js",
-  "repository": "https://github.com/rmfpdlxmtidl/kubernates-cloud.git",
+  "repository": "https://github.com/rmfpdlxmtidl/kubernetes-cloud.git",
   "scripts": {
     "dev": "NODE_ENV=development concurrently \"yarn webpack\" \"nodemon -r dotenv/config dist/index.js dotenv_config_path=.env.development --trace-warnings\"",
     "build": "NODE_ENV=production yarn webpack",

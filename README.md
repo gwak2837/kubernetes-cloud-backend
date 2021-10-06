@@ -1,4 +1,4 @@
-# node-template-2021
+# kubernetes-cloud
 
 ## Requires
 
@@ -51,7 +51,7 @@ $ docker-compose up --detach --build --force-recreate
 
 ## Scripts
 
-### `yarn generate`
+#### `yarn generate`
 
 ```
 $ export $(grep -v '^#' .env.development | xargs)
