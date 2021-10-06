@@ -3,6 +3,7 @@ import deletePost from './sql/deletePost.sql'
 import insertPost from './sql/insertPost.sql'
 import { pool } from '../../database/postgres'
 import post from './sql/post.sql'
+import { postORM } from './ORM'
 import posts from './sql/posts.sql'
 import updatePost from './sql/updatePost.sql'
 
@@ -21,7 +22,7 @@ postRouter.get('/:id', async (ctx, next) => {
 
   if (rowCount === 0) ctx.throw(404, '해당 ID의 게시글이 존재하지 않습니다.')
 
-  ctx.body = { rows }
+  ctx.body = { post: postORM(rows[0]) }
   next()
 })
 
