@@ -1,6 +1,8 @@
+/* eslint-disable node/no-unpublished-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { resolve } = require('path')
 const { NODE_ENV } = process.env
+const { IgnorePlugin } = require('webpack')
 
 module.exports = {
   entry: './src',
@@ -26,6 +28,7 @@ module.exports = {
     filename: 'index.js',
     path: resolve(__dirname, 'dist'),
   },
+  plugins: [new IgnorePlugin({ resourceRegExp: /^pg-native$/ })],
   resolve: {
     extensions: ['.js', '.ts'],
   },
