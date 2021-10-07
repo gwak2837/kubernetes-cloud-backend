@@ -27,9 +27,11 @@ POSTGRES_HOST=
 POSTGRES_DB=
 POSTGRES_USER=
 POSTGRES_PASSWORD=
+
+JWT_SECRET_KEY=
 ```
 
-`.env`, `.env.development`, `.env.test`
+`.env`, `.env.development`, `.env.test` 파일을 생성하고 환경변수를 설정한다.
 
 ### Start Node.js server
 
