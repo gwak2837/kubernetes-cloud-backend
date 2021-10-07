@@ -1,10 +1,10 @@
 import { user } from '../../database/types'
 
-export function userORM(rows: Partial<user>[]) {
-  return rows.map((row) => ({
-    id: row.id,
-    creationTime: row.creation_time,
-    modificationTime: row.modification_time,
-    email: row.email,
-  }))
+export function userORM(user: Partial<user>) {
+  return {
+    id: user.id,
+    creationTime: user.creation_time,
+    modificationTime: user.modification_time,
+    email: user.email,
+  }
 }

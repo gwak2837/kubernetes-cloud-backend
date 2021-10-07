@@ -1,11 +1,11 @@
 import { post } from '../../database/types'
 
-export function postORM(rows: Partial<post>[]) {
-  return rows.map((row) => ({
-    id: row.id,
-    creationTime: row.creation_time,
-    modificationTime: row.modification_time,
-    title: row.title,
-    contents: row.contents,
-  }))
+export function postORM(post: Partial<post>) {
+  return {
+    id: post.id,
+    creationTime: post.creation_time,
+    modificationTime: post.modification_time,
+    title: post.title,
+    contents: post.contents,
+  }
 }

@@ -23,7 +23,7 @@ postRouter.get('/:id', async (ctx, next) => {
 
   if (rowCount === 0) ctx.throw(404, '해당 ID의 게시글이 존재하지 않습니다.')
 
-  ctx.body = { post: postORM(rows[0]) }
+  ctx.body = postORM(rows[0])
   next()
 })
 

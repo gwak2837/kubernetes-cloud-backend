@@ -9,6 +9,7 @@ import logout from './sql/logout.sql'
 import me from './sql/me.sql'
 import { pool } from '../../database/postgres'
 import register from './sql/register.sql'
+import { userORM } from './ORM'
 
 export const userRouter = new Router<UserContext>({ prefix: __dirname.slice(7) })
 
@@ -20,7 +21,7 @@ userRouter.get('/', async (ctx, next) => {
     .query(me, [userId])
     .catch((error) => ctx.throw(400, 'Database ' + error))
 
-  ctx.body = rows[0]
+  ctx.body = userORM(rows[0])
   next()
 })
 
