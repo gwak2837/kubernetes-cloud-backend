@@ -23,5 +23,6 @@ CREATE TABLE post (
   creation_time timestamptz NOT NULL DEFAULT NOW(),
   modification_time timestamptz NOT NULL DEFAULT NOW(),
   title varchar(50) NOT NULL,
-  contents text NOT NULL
+  contents text NOT NULL,
+  user_id uuid NOT NULL REFERENCES "user" ON DELETE CASCADE
 );
