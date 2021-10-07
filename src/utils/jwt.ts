@@ -1,4 +1,4 @@
-import { sign, verify } from 'jsonwebtoken'
+import { JwtPayload, sign, verify } from 'jsonwebtoken'
 
 const secretKey = process.env.JWT_SECRET_KEY ?? ''
 
@@ -16,13 +16,13 @@ export function generateJWT<T extends Record<string, unknown>>(payload: T, expir
   })
 }
 
-export function verifyJWT<T extends Record<string, any>>(token: string) {
-  return new Promise<T>((resolve, reject) => {
+export function verifyJWT<T>(token: string) {
+  return new Promise<T & JwtPayload>((resolve, reject) => {
     verify(token, secretKey, { algorithms: ['HS256'] }, (err, decoded) => {
       // JWT가 아니거나, JWT 서명이 유효하지 않거나, JWT 유효기간이 만료됐을 때
       if (err) reject(err)
 
-      resolve(decoded as T)
+      resolve(decoded as T & JwtPayload)
     })
   })
 }

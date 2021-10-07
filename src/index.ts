@@ -33,7 +33,7 @@ app.use(async (ctx, next) => {
 
   const { rowCount, rows } = await pool.query(user, [
     verifiedJwt.userId,
-    new Date((verifiedJwt.iat + 2) * 1000),
+    new Date(((verifiedJwt.iat ?? 0) + 2) * 1000),
   ])
 
   if (rowCount === 0) return next()
