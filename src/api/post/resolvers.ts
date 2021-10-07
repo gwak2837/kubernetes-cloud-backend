@@ -19,7 +19,7 @@ postRouter.get('/:id', async (ctx, next) => {
   const postId = ctx.params.id
   const { rowCount, rows } = await pool
     .query(post, [postId])
-    .catch((error) => ctx.throw(500, 'Database error: ' + error))
+    .catch((error) => ctx.throw(500, 'Database ' + error))
 
   if (rowCount === 0) ctx.throw(404, '해당 ID의 게시글이 존재하지 않습니다.')
 
@@ -36,7 +36,7 @@ postRouter.post('/', async (ctx, next) => {
 
   const { rows } = await pool
     .query(insertPost, [title, contents, userId])
-    .catch((error) => ctx.throw(500, 'Database error: ' + error))
+    .catch((error) => ctx.throw(500, 'Database ' + error))
 
   ctx.body = { postId: rows[0].id }
   next()
@@ -58,7 +58,7 @@ postRouter.delete('/:id', async (ctx, next) => {
   const postId = ctx.params.id
   const { rowCount, rows } = await pool
     .query(deletePost, [postId, userId])
-    .catch((error) => ctx.throw(500, 'Database error: ' + error))
+    .catch((error) => ctx.throw(500, 'Database ' + error))
 
   if (rowCount === 0) ctx.throw(404, '해당 ID의 게시글이 존재하지 않거나 본인의 게시물이 아닙니다.')
 
