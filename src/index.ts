@@ -36,6 +36,7 @@ app.use(async (ctx, next) => {
     new Date(((verifiedJwt.iat ?? 0) + 2) * 1000),
   ])
 
+  // 로그아웃 등으로 인해 JWT가 유효하지 않을 때
   if (rowCount === 0) return next()
 
   ctx.state = { userId: rows[0].id }
