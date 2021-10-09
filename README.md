@@ -31,7 +31,7 @@ POSTGRES_PASSWORD=
 JWT_SECRET_KEY=
 ```
 
-`.env`, `.env.development`, `.env.test` 파일을 생성하고 환경변수를 설정한다.
+`.env`, `.env.development`, `.env.test` 파일을 생성하고 환경변수를 설정합니다.
 
 ### Start Node.js server
 
@@ -60,4 +60,4 @@ $ export $(grep -v '^#' .env.development | xargs)
 $ yarn generate
 ```
 
-PostgreSQL 데이터베이스 구조를 바탕으로 TypeScript 기반 자료형이 담긴 파일을 생성한다.
+PostgreSQL 데이터베이스 구조를 바탕으로 TypeScript 기반 자료형이 담긴 파일을 생성합니다.
