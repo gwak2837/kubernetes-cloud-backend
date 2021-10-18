@@ -12,7 +12,7 @@ export const postRouter = new Router<UserContext>({ prefix: __dirname.slice(7) }
 
 postRouter.get('/', (ctx, next) => {
   ctx.body = posts
-  next()
+  return next()
 })
 
 postRouter.get('/:id', async (ctx, next) => {
@@ -21,47 +21,47 @@ postRouter.get('/:id', async (ctx, next) => {
     .query(post, [postId])
     .catch((error) => ctx.throw(500, 'Database ' + error))
 
-  if (rowCount === 0) ctx.throw(404, '해당 ID의 게시글이 존재하지 않습니다.')
+  if (rowCount === 0) return ctx.throw(404, '해당 ID의 게시글이 존재하지 않습니다.')
 
   ctx.body = postORM(rows[0])
-  next()
+  return next()
 })
 
 postRouter.post('/', async (ctx, next) => {
   const userId = ctx.state.userId
-  if (!userId) ctx.throw(403, '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.')
+  if (!userId) return ctx.throw(403, '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.')
 
   const { title, contents } = ctx.request.body
-  if (!title || !contents) ctx.throw(400, '게시글 제목과 내용을 입력해주세요.')
+  if (!title || !contents) return ctx.throw(400, '게시글 제목과 내용을 입력해주세요.')
 
   const { rows } = await pool
     .query(insertPost, [title, contents, userId])
     .catch((error) => ctx.throw(500, 'Database ' + error))
 
   ctx.body = { postId: rows[0].id }
-  next()
+  return next()
 })
 
 postRouter.patch('/:id', async (ctx, next) => {
   const userId = ctx.state.userId
-  if (!userId) ctx.throw(403, '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.')
+  if (!userId) return ctx.throw(403, '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.')
 
   const postId = ctx.params.id
   ctx.body = updatePost + postId
-  next()
+  return next()
 })
 
 postRouter.delete('/:id', async (ctx, next) => {
   const userId = ctx.state.userId
-  if (!userId) ctx.throw(403, '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.')
+  if (!userId) return ctx.throw(403, '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.')
 
   const postId = ctx.params.id
   const { rowCount, rows } = await pool
     .query(deletePost, [postId, userId])
     .catch((error) => ctx.throw(500, 'Database ' + error))
-
-  if (rowCount === 0) ctx.throw(404, '해당 ID의 게시글이 존재하지 않거나 본인의 게시물이 아닙니다.')
+  if (rowCount === 0)
+    return ctx.throw(404, '해당 ID의 게시글이 존재하지 않거나 본인의 게시물이 아닙니다.')
 
   ctx.body = { postId: rows[0].id }
-  next()
+  return next()
 })
