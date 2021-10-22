@@ -1,15 +1,15 @@
 import { compare, genSalt, hash } from 'bcryptjs'
-
 import Router from 'koa-router'
-import { UserContext } from '../..'
+
+import { pool } from '../../database/postgres'
 import { emailRegEx } from '../../utils'
 import { generateJWT } from '../../utils/jwt'
+import { UserContext } from '../..'
+import { userORM } from './ORM'
 import login from './sql/login.sql'
 import logout from './sql/logout.sql'
 import me from './sql/me.sql'
-import { pool } from '../../database/postgres'
 import register from './sql/register.sql'
-import { userORM } from './ORM'
 
 export const userRouter = new Router<UserContext>({ prefix: __dirname.slice(7) })
 
@@ -39,7 +39,7 @@ userRouter.post('/', async (ctx, next) => {
   const { id: userId } = rows[0]
   if (!userId) return ctx.throw(400, '이미 존재하는 이메일입니다.')
 
-  ctx.body = await generateJWT({ userId })
+  ctx.body = { jwt: await generateJWT({ userId }) }
   return next()
 })
 
@@ -57,9 +57,9 @@ userRouter.post('/login', async (ctx, next) => {
 
   const authenticationSuceed = await compare(passwordHash, rows[0].password_hash)
   if (!authenticationSuceed)
-    ctx.throw(401, '로그인에 실패했어요. 이메일 또는 비밀번호를 확인해주세요.')
+    return ctx.throw(401, '로그인에 실패했어요. 이메일 또는 비밀번호를 확인해주세요.')
 
-  ctx.body = await generateJWT({ userId: rows[0].id })
+  ctx.body = { jwt: await generateJWT({ userId: rows[0].id }) }
   return next()
 })
 
