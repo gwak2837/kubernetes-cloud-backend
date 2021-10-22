@@ -1,2 +1,3 @@
 SELECT *
 FROM post
+LIMIT $1 OFFSET $2

@@ -1,17 +1,25 @@
 import Router from 'koa-router'
+
+import { pool } from '../../database/postgres'
 import { UserContext } from '../..'
+import { postORM } from './ORM'
 import deletePost from './sql/deletePost.sql'
 import insertPost from './sql/insertPost.sql'
-import { pool } from '../../database/postgres'
 import post from './sql/post.sql'
-import { postORM } from './ORM'
 import posts from './sql/posts.sql'
 import updatePost from './sql/updatePost.sql'
 
 export const postRouter = new Router<UserContext>({ prefix: __dirname.slice(7) })
 
-postRouter.get('/', (ctx, next) => {
-  ctx.body = posts
+postRouter.get('/', async (ctx, next) => {
+  const { offset, limit } = ctx.params
+  const { rowCount, rows } = await pool
+    .query(posts, [limit ?? 10, offset ?? 0])
+    .catch((error) => ctx.throw(500, 'Database ' + error))
+
+  if (rowCount === 0) return ctx.throw(404, '게시글이 존재하지 않습니다.')
+
+  ctx.body = rows.map((row) => postORM(row))
   return next()
 })
 
