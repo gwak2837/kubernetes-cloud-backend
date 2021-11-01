@@ -3262,9 +3262,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"kubernetes-cloud@workspace:.":
+"kubernetes-cloud-backend@workspace:.":
   version: 0.0.0-use.local
-  resolution: "kubernetes-cloud@workspace:."
+  resolution: "kubernetes-cloud-backend@workspace:."
   dependencies:
     "@koa/cors": ^3.1.0
     "@types/bcryptjs": ^2.4.2
