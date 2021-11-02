@@ -20,7 +20,7 @@
     "lint": "eslint . --fix --ignore-path .gitignore",
     "type": "tsc --pretty --noEmit",
     "generate": "schemats postgres postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_DB} -o src/database/${POSTGRES_DB}.ts && prettier src/database/${POSTGRES_DB}.ts --write",
-    "pre-push": "yarn format && yarn lint && yarn type",
+    "pre-push": "yarn format && yarn type",
     "postinstall": "[ -d '.husky' ] && husky install || true"
   },
   "dependencies": {
