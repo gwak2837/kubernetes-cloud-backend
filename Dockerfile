@@ -18,6 +18,6 @@ WORKDIR /server
 
 COPY --from=builder /server/dist dist
 
-EXPOSE $PORT
+EXPOSE 3000
 
 ENTRYPOINT ["node", "dist"]
