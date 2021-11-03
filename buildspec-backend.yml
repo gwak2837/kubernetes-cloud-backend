@@ -9,10 +9,10 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t 499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/kubernetes-cloud-backend:latest .
-      - docker tag 499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/kubernetes-cloud-backend:latest 499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/kubernetes-cloud-backend:latest      
+      - docker build -t kubernetes-cloud-backend:latest .
+      - docker tag kubernetes-cloud-backend:latest 499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/kubernetes-cloud-backend:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/kubernetes-cloud-backend:latest
+      - docker push 499087382362.dkr.ecr.ap-northeast-2.amazonaws.com/kubernetes-cloud-backend:latest
