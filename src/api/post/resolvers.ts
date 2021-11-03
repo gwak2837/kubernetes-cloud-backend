@@ -12,14 +12,14 @@ import updatePost from './sql/updatePost.sql'
 export const postRouter = new Router<UserContext>({ prefix: __dirname.slice(7) })
 
 postRouter.get('/', async (ctx, next) => {
-  const { offset, limit } = ctx.params
+  const { offset, limit } = ctx.query
   const { rowCount, rows } = await pool.query(posts, [limit ?? 10, offset ?? 0]).catch((error) => {
     console.error(error)
     return ctx.throw(500, JSON.stringify({ error: { message: 'Database error' } }))
   })
 
   if (rowCount === 0)
-    return ctx.throw(404, JSON.stringify({ message: '게시글이 존재하지 않습니다.' }))
+    return ctx.throw(404, JSON.stringify({ error: { message: '게시글이 존재하지 않습니다.' } }))
 
   ctx.body = rows.map((row) => postORM(row))
   return next()
@@ -76,17 +76,21 @@ postRouter.delete('/:id', async (ctx, next) => {
   if (!userId)
     return ctx.throw(
       403,
-      JSON.stringify({ message: '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.' })
+      JSON.stringify({
+        error: { message: '로그인되어 있지 않습니다. 로그인 후 다시 요청해주세요.' },
+      })
     )
 
   const postId = ctx.params.id
   const { rowCount, rows } = await pool
     .query(deletePost, [postId, userId])
-    .catch((error) => ctx.throw(500, JSON.stringify({ message: 'Database ' + error })))
+    .catch((error) => ctx.throw(500, JSON.stringify({ error: { message: 'Database ' + error } })))
   if (rowCount === 0)
     return ctx.throw(
       404,
-      JSON.stringify({ message: '해당 ID의 게시글이 존재하지 않거나 본인의 게시물이 아닙니다.' })
+      JSON.stringify({
+        error: { message: '해당 ID의 게시글이 존재하지 않거나 본인의 게시물이 아닙니다.' },
+      })
     )
 
   ctx.body = { postId: rows[0].id }

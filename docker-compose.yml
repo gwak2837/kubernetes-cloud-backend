@@ -3,10 +3,10 @@ version: '3.9'
 services:
   server:
     build: .
-    container_name: kubernetes-cloud-backend-container
+    container_name: kubernetes-cloud-server
     env_file: .env
-    image: kubernetes-cloud-backend-image:latest
-    restart: always
+    image: kubernetes-cloud-server:latest
+    # restart: always
     ports:
       - $PORT:$PORT
     # volumes:

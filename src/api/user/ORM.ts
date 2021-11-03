@@ -1,4 +1,4 @@
-import { user } from '../../database/types'
+import { user } from '../../database/kubernetes'
 
 export function userORM(user: Partial<user>) {
   return {
