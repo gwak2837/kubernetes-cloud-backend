@@ -1,11 +1,12 @@
 /* eslint-disable node/no-unpublished-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { resolve } = require('path')
-const { NODE_ENV } = process.env
 const { IgnorePlugin } = require('webpack')
 
+const { NODE_ENV } = process.env
+
 module.exports = {
-  entry: './src',
+  entry: './src/index.ts',
   mode: NODE_ENV,
   module: {
     rules: [
@@ -30,11 +31,11 @@ module.exports = {
   },
   plugins: [new IgnorePlugin({ resourceRegExp: /^pg-native$/ })],
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.ts', '.mjs', '.js'],
   },
-  target: 'node',
+  target: 'node16',
   watch: NODE_ENV === 'development',
   watchOptions: {
-    ignored: ['.yarn', 'dist'],
+    ignored: '!src',
   },
 }

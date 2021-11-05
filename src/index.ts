@@ -17,8 +17,8 @@ pool
   .then(({ rows }) =>
     console.log('🚅 Connected to PostgreSQL server at ' + new Date(rows[0].now).toLocaleString())
   )
-  .catch(() => {
-    throw new Error('PostgreSQL 서버에 접속할 수 없습니다.')
+  .catch((error) => {
+    throw new Error('PostgreSQL 서버에 접속할 수 없습니다.' + error)
   })
 
 export const app = new Koa<UserContext>()
